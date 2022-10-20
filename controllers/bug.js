@@ -36,4 +36,27 @@ const createBug = async (req, res) => {
   }
 };
 
-module.exports = { getAllBugs, createBug };
+//Update a bug
+const updateBug = async (req, res) => {
+  const bugId = req.params.id;
+  const newData = req.body;
+
+  try {
+    const bug = await Bug.findByIdAndUpdate(bugId, newData);
+    if (!bug) {
+      res.status(400).send({ message: "Check the request data and try again" });
+    } else {
+      res.status(200).send({ message: "Bug data updated successfully" });
+    }
+  } catch (error) {
+    if (error.path === "_id") {
+      res.status(400).send({
+        message: "Bug not found: Check the bug id and try again",
+      });
+    } else {
+      res.status(500).send(error);
+    }
+  }
+};
+
+module.exports = { getAllBugs, createBug, updateBug };
