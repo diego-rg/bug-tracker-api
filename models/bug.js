@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const BugSchema = new Schema(
@@ -6,6 +7,7 @@ const BugSchema = new Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,

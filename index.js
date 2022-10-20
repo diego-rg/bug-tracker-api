@@ -3,6 +3,8 @@ require("dotenv").config(); //Dev
 const express = require("express");
 const mongoose = require("mongoose");
 
+const bugRoutes = require("./routes/bug");
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -18,10 +20,7 @@ mongoose
     console.log(err);
   });
 
-// For testing purposes
-app.get("/", (req, res) => {
-  res.send("<h2>It's Working!</h2>");
-});
+app.use("/api/bugs", bugRoutes);
 
 app.listen(PORT, () => {
   console.log(`API is listening on port ${PORT}`);
