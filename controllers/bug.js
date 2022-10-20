@@ -24,7 +24,7 @@ const createBug = async (req, res) => {
     if (!saveBug) {
       res.status(400).send({ message: "Check the request data and try again" });
     } else {
-      res.status(200).send({ bug: saveBug });
+      res.status(200).send({ message: "Bug created successfully" });
     }
   } catch (error) {
     if (error.code === 11000) {
@@ -59,4 +59,26 @@ const updateBug = async (req, res) => {
   }
 };
 
-module.exports = { getAllBugs, createBug, updateBug };
+//Delete a bug
+const deleteBug = async (req, res) => {
+  const bugId = req.params.id;
+
+  try {
+    const bug = await Bug.findByIdAndDelete(bugId);
+    if (!bug) {
+      res.status(400).send({ message: "Check the request data and try again" });
+    } else {
+      res.status(200).send({ message: "Bug deleted successfully" });
+    }
+  } catch (error) {
+    if (error.path === "_id") {
+      res.status(400).send({
+        message: "Bug not found: Check the bug id and try again",
+      });
+    } else {
+      res.status(500).send(error);
+    }
+  }
+};
+
+module.exports = { getAllBugs, createBug, updateBug, deleteBug };
