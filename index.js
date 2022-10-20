@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const bugRoutes = require("./routes/bug");
 
 const app = express();
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
