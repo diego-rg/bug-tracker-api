@@ -2,11 +2,13 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const bugRoutes = require("./routes/bug");
 
 const app = express();
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 const PORT = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
