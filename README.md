@@ -4,6 +4,10 @@
 
   `https://drg-bugtracker.herokuapp.com/api/bugs`
 
+- GET request to show one bug using id
+
+  `https://drg-bugtracker.herokuapp.com/api/bugs/:id`
+
 - POST request to create a new bug
 
   `https://drg-bugtracker.herokuapp.com/api/bugs`
