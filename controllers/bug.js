@@ -5,10 +5,24 @@ const getAllBugs = async (req, res) => {
   try {
     const bugs = await Bug.find();
     if (!bugs) {
-      //Se non pode devolver datos. Non conta se a resposta contén un array vacío ao non haber datos
       res.status(400).send({ message: "Check the request data and try again" });
     } else {
       res.status(200).send({ bugs });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+//Show one bug by ID
+const getBugById = async (req, res) => {
+  const bugId = req.params.id;
+  try {
+    const bug = await Bug.findById(bugId);
+    if (!bug) {
+      res.status(400).send({ message: "Check the request data and try again" });
+    } else {
+      res.status(200).send({ bug });
     }
   } catch (error) {
     res.status(500).send(error);
@@ -81,4 +95,4 @@ const deleteBug = async (req, res) => {
   }
 };
 
-module.exports = { getAllBugs, createBug, updateBug, deleteBug };
+module.exports = { getAllBugs, getBugById, createBug, updateBug, deleteBug };
