@@ -67,6 +67,11 @@ const updateBug = async (req, res) => {
       res.status(400).send({
         message: "Bug not found: Check the bug id and try again",
       });
+    } else if (error.code === 11000) {
+      res.status(400).send({
+        message:
+          "Bug validation failed: name: A bug with that name already exists",
+      });
     } else {
       res.status(500).send(error);
     }
