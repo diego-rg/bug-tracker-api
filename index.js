@@ -8,7 +8,7 @@ const bugRoutes = require("./routes/bug");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true })); //tamén se poden configurar os métodos permitidos
 
 const PORT = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
