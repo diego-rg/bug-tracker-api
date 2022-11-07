@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://drg-bugtracker.vercel.app/",
+    origin: "https://drg-bugtracker.herokuapp.com/api",
     credentials: true,
   })
 );
