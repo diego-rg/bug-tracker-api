@@ -8,7 +8,12 @@ const bugRoutes = require("./routes/bug");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true })); //tamén se poden configurar os métodos permitidos
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://drg-bugtracker.vercel.app/"],
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
