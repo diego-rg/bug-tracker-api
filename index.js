@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://drg-bugtracker.vercel.app/"],
+    origin: ["https://drg-bugtracker.vercel.app/", "http://localhost:3000"],
     credentials: true,
   })
 );
