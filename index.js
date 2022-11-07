@@ -8,12 +8,7 @@ const bugRoutes = require("./routes/bug");
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://drg-bugtracker.herokuapp.com/api",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
