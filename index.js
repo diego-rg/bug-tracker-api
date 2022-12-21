@@ -3,7 +3,6 @@ require("dotenv").config(); //Dev.
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const passport = require("passport");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
@@ -25,8 +24,6 @@ mongoose
     console.log("Mongo connection error");
     console.log(err);
   });
-
-app.use(passport.initialize());
 
 app.use("/api/bugs", bugRoutes);
 app.use("/api", userRoutes);
