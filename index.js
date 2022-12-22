@@ -4,18 +4,33 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport");
+const cookieSession = require("cookie-session");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
 const oauthRoutes = require("./routes/oauth");
 require("./auth/googleOauth");
 
-const app = express();
-app.use(express.json());
-app.use(cors());
-
 const PORT = process.env.PORT || 8000;
 const dbUrl = process.env.DB_URL;
+const sessionSecret = process.env.SESSION_SECRET;
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [sessionSecret],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api/bugs", bugRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/oauth", oauthRoutes);
 
 mongoose
   .connect(dbUrl)
@@ -26,10 +41,6 @@ mongoose
     console.log("Mongo connection error");
     console.log(err);
   });
-
-app.use("/api/bugs", bugRoutes);
-app.use("/api", userRoutes);
-app.use("/api/oauth", oauthRoutes);
 
 app.listen(PORT, () => {
   console.log(`API is listening on port ${PORT}`);

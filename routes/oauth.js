@@ -4,7 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 
 const failureRedirect = "http://localhost:3000";
-const successRedirect = "http://localhost:3000";
+const successRedirect = "https://drg-bugtracker.vercel.app";
 
 router.get(
   "/google",
