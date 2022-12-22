@@ -1,4 +1,4 @@
-## API for a bug tracker web APP.
+# API for a bug tracker web APP
 
 - GET request to show all bugs
 

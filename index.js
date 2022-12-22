@@ -3,9 +3,11 @@ require("dotenv").config(); //Dev.
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const passport = require("passport");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
+const oauthRoutes = require("./routes/oauth");
 require("./auth/googleOauth");
 
 const app = express();
@@ -27,6 +29,7 @@ mongoose
 
 app.use("/api/bugs", bugRoutes);
 app.use("/api", userRoutes);
+app.use("/api/oauth", oauthRoutes);
 
 app.listen(PORT, () => {
   console.log(`API is listening on port ${PORT}`);
