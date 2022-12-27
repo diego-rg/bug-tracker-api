@@ -43,8 +43,7 @@ const createBug = async (req, res) => {
   } catch (error) {
     if (error.code === 11000) {
       res.status(400).send({
-        message:
-          "Bug validation failed: name: A bug with that name already exists",
+        message: "Bug validation failed: a bug with that name already exists",
       });
     } else res.status(500).send(error);
   }
@@ -69,8 +68,7 @@ const updateBug = async (req, res) => {
       });
     } else if (error.code === 11000) {
       res.status(400).send({
-        message:
-          "Bug validation failed: name: A bug with that name already exists",
+        message: "Bug validation failed: a bug with that name already exists",
       });
     } else {
       res.status(500).send(error);
