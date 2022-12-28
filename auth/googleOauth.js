@@ -22,6 +22,11 @@ passport.use(
             googleId: profile.id,
             email: profile.emails[0].value,
           }).save();
+
+          const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN,
+          });
+
           cb(null, newUser);
         }
       } catch (err) {
