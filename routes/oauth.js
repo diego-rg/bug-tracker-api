@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const user = require("../models/user");
 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiration = process.env.JWT_EXPIRES_IN;
@@ -24,16 +25,15 @@ router.get(
   passport.authenticate("google", {
     failureMessage: "Cannot login to Google, please try again later",
     failureRedirect: failureRedirect,
-    successRedirect: successRedirect,
+    session: false,
   }),
   (req, res) => {
     if (req.user) {
       const token = jwt.sign({ id: req.user._id }, jwtSecret, {
         expiresIn: jwtExpiration,
       });
-      res.status(200).send({
-        token: token,
-      });
+      res.cookie("token", token);
+      res.redirect("http://localhost:3000");
     }
   }
 );

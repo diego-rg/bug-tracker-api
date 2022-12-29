@@ -22,11 +22,6 @@ passport.use(
             googleId: profile.id,
             email: profile.emails[0].value,
           }).save();
-
-          const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN,
-          });
-
           cb(null, newUser);
         }
       } catch (err) {
@@ -35,13 +30,3 @@ passport.use(
     }
   )
 );
-
-passport.serializeUser((user, cb) => {
-  cb(null, user.id);
-});
-
-passport.deserializeUser((id, cb) => {
-  User.findById(id).then((user) => {
-    cb(null, user);
-  });
-});
