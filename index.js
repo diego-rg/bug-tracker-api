@@ -9,6 +9,7 @@ const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
 const oauthRoutes = require("./routes/oauth");
 require("./auth/googleOauth");
+require("./auth/jwt");
 
 const PORT = process.env.PORT || 8000;
 const dbUrl = process.env.DB_URL;
