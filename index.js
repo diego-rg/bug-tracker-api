@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport");
+const morgan = require("morgan");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
@@ -19,6 +20,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
+
+morgan.token("body", (req) => {
+  return JSON.stringify(req.body);
+});
+morgan.token("req-headers", function (req, res) {
+  return JSON.stringify(req.headers["authorization"]);
+});
+morgan.token("res-body", (req, res) => JSON.stringify(res.body));
+app.use(morgan(":body :req-headers :res-body"));
 
 app.use("/api/bugs", bugRoutes);
 app.use("/api/users", userRoutes);
