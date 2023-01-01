@@ -1,14 +1,13 @@
 const express = require("express");
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
 
-const jwtSecret = process.env.JWT_SECRET;
-const jwtExpiration = process.env.JWT_EXPIRES_IN;
+const authController = require("../controllers/auth");
+const spaUrl = process.env.SPA_URL;
+const authUrl = process.env.GOOGLE_OAUTH_URL;
 
 const router = express.Router();
-
-const failureRedirect = "http://localhost:8000/api/auth/google";
-const successRedirect = "http://localhost:3000";
+const failureRedirect = authUrl;
+const successRedirect = spaUrl;
 
 router.get(
   "/google",
@@ -26,15 +25,7 @@ router.get(
     failureRedirect: failureRedirect,
     session: false,
   }),
-  (req, res) => {
-    if (req.user) {
-      const token = jwt.sign({ id: req.user._id }, jwtSecret, {
-        expiresIn: jwtExpiration,
-      });
-      res.cookie("token", token);
-      res.redirect("http://localhost:3000");
-    }
-  }
+  authController.googleCallback
 );
 
 module.exports = router;

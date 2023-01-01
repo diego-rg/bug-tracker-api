@@ -1,15 +1,12 @@
 const express = require("express");
 const passport = require("passport");
 
+const userController = require("../controllers/user");
+
 const router = express.Router();
 
-router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
-  res.json(req.user.name);
-});
+router.get("/current", passport.authenticate("jwt", { session: false }), userController.getCurrentUser);
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("http://localhost:3000");
-});
+router.get("/logout", userController.logoutUser);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const passport = require("passport");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
-const authRoutes = require("./routes/oauth");
+const authRoutes = require("./routes/auth");
 require("./auth/googleAuth");
 require("./auth/jwt");
 

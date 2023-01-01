@@ -1,6 +1,7 @@
 const express = require("express");
-const bugController = require("../controllers/bug");
 const passport = require("passport");
+
+const bugController = require("../controllers/bug");
 
 const router = express.Router();
 
