@@ -11,19 +11,6 @@
 - POST request to create a new bug
 
   `https://api-bugtracker.onrender.com/api/bugs`
-  {
-  method: "POST",
-  body: JSON.stringify({
-  "name": String,
-  "description": String,
-  "status": String<["new", "assigned", "fixed"]>,
-  "priority": String<["low", "high"]>,
-  "severity": String<["low", "high"]>
-  }),
-  headers: {
-  "Content-Type": "application/json",
-  },
-  }
 
 - PUT request to update an existing bug
 

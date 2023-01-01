@@ -7,8 +7,8 @@ const passport = require("passport");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
-const oauthRoutes = require("./routes/oauth");
-require("./auth/googleOauth");
+const authRoutes = require("./routes/oauth");
+require("./auth/googleAuth");
 require("./auth/jwt");
 
 const PORT = process.env.PORT || 8000;
@@ -22,7 +22,7 @@ app.use(passport.initialize());
 
 app.use("/api/bugs", bugRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/oauth", oauthRoutes);
+app.use("/api/auth", authRoutes);
 
 mongoose
   .connect(dbUrl)

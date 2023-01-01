@@ -1,14 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const user = require("../models/user");
 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiration = process.env.JWT_EXPIRES_IN;
 
 const router = express.Router();
 
-const failureRedirect = "http://localhost:8000/api/oauth/google";
+const failureRedirect = "http://localhost:8000/api/auth/google";
 const successRedirect = "http://localhost:3000";
 
 router.get(
