@@ -12,10 +12,6 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "You must provide an email"],
     },
-    // token: {
-    //   type: String,
-    //   required: false,
-    // },
     googleId: {
       type: String,
       required: false,

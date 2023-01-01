@@ -16,7 +16,7 @@ router.get(
   passport.authenticate("google", {
     session: false,
     scope: ["profile", "email"],
-    prompt: "select_account", //volve a pedir seleccionar conta despois de logout
+    prompt: "select_account",
   })
 );
 
