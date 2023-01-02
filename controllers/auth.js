@@ -8,10 +8,11 @@ const googleCallback = (req, res) => {
   if (req.user) {
     const token = jwt.sign({ id: req.user._id }, jwtSecret, {
       expiresIn: jwtExpiration,
+    });
+    res.cookie("token", token, {
       domain: "https://drg-bugtracker.vercel.app/",
       sameSite: "none",
     });
-    res.cookie("token", token);
     res.redirect(spaUrl);
   }
 };
