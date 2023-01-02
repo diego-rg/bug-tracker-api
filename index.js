@@ -17,7 +17,11 @@ const dbUrl = process.env.DB_URL;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://drg-bugtracker.vercel.app/",
+  })
+);
 app.use(passport.initialize());
 
 app.use("/api/bugs", bugRoutes);

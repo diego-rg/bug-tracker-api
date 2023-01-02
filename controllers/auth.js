@@ -10,7 +10,8 @@ const googleCallback = (req, res) => {
       expiresIn: jwtExpiration,
     });
     res.cookie("token", token, {
-      domain: "drg-bugtracker.vercel.app/",
+      httpOnly: true,
+      origin: "https://drg-bugtracker.vercel.app/",
     });
     res.redirect(spaUrl);
   }
