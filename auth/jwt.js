@@ -6,11 +6,16 @@ const User = require("../models/user");
 
 const jwtSecret = process.env.JWT_SECRET;
 
-var opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = jwtSecret;
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies["token"];
+  }
+  return token;
+};
+
 passport.use(
-  new JwtStrategy(opts, function (jwt_payload, done) {
+  new JwtStrategy({ jwtFromRequest: cookieExtractor, secretOrKey: jwtSecret }, function (jwt_payload, done) {
     User.findById(jwt_payload.id, function (err, user) {
       if (err) {
         return done(err, false);

@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport");
+const cookieParser = require("cookie-parser");
 
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
@@ -18,11 +19,13 @@ const spaUrl = process.env.SPA_URL;
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: spaUrl,
-  })
-);
+
+const corsConfig = {
+  credentials: true,
+  origin: true,
+};
+app.use(cors(corsConfig));
+app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use("/api/bugs", bugRoutes);
