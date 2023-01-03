@@ -8,18 +8,19 @@ const passport = require("passport");
 const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
-require("./auth/googleAuth");
+require("./auth/google");
 require("./auth/jwt");
 
 const PORT = process.env.PORT || 8000;
 const dbUrl = process.env.DB_URL;
+const spaUrl = process.env.SPA_URL;
 
 const app = express();
 
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://drg-bugtracker.vercel.app/",
+    origin: spaUrl,
   })
 );
 app.use(passport.initialize());
