@@ -11,9 +11,13 @@ const googleCallback = (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      origin: "https://drg-bugtracker.vercel.app/",
+      sameSite: "strict",
+      secure: true,
     });
+
     res.redirect(spaUrl);
+  } else {
+    res.status(500).send({ message: "Error. Try to log in with another provider." });
   }
 };
 
