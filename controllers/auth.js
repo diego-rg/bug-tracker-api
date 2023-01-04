@@ -11,7 +11,7 @@ const googleCallback = (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "none",
       secure: true,
     });
 
