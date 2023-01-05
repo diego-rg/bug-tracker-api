@@ -9,6 +9,7 @@ const router = express.Router();
 const failureRedirect = authUrl;
 const successRedirect = spaUrl;
 
+// Google login
 router.get(
   "/google",
   passport.authenticate("google", {
@@ -17,11 +18,10 @@ router.get(
     prompt: "select_account",
   })
 );
-
+// Google callback
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureMessage: "Cannot login to Google, please try again later",
     failureRedirect: failureRedirect,
     session: false,
   }),

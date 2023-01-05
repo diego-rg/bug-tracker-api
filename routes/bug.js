@@ -5,10 +5,15 @@ const bugController = require("../controllers/bug");
 
 const router = express.Router();
 
-router.get("/", passport.authenticate("jwt", { session: false, failureMessage: true }), bugController.getAllBugs);
-router.get("/:id", passport.authenticate("jwt", { session: false, failureMessage: true }), bugController.getBugById);
-router.post("/", passport.authenticate("jwt", { session: false, failureMessage: true }), bugController.createBug);
-router.put("/:id", passport.authenticate("jwt", { session: false, failureMessage: true }), bugController.updateBug);
-router.delete("/:id", passport.authenticate("jwt", { session: false, failureMessage: true }), bugController.deleteBug);
+// Get all bugs
+router.get("/", passport.authenticate("jwt", { session: false }), bugController.getAllBugs);
+// Get one bug by id
+router.get("/:id", passport.authenticate("jwt", { session: false }), bugController.getBugById);
+// Post one bug
+router.post("/", passport.authenticate("jwt", { session: false }), bugController.createBug);
+// Update one bug
+router.put("/:id", passport.authenticate("jwt", { session: false }), bugController.updateBug);
+// Delete one bug
+router.delete("/:id", passport.authenticate("jwt", { session: false }), bugController.deleteBug);
 
 module.exports = router;

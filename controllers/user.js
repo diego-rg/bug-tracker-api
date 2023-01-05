@@ -6,12 +6,10 @@ const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiration = process.env.JWT_EXPIRES_IN;
 const spaUrl = process.env.SPA_URL;
 
-// Get current logged user
 const getCurrentUser = (req, res) => {
   res.json(req.user.name);
 };
 
-// Log out user
 const logoutUser = (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
@@ -21,7 +19,6 @@ const logoutUser = (req, res) => {
   res.redirect(spaUrl);
 };
 
-// Log in Guest
 const loginGuest = async (req, res) => {
   try {
     const user = await User.findOne({ name: "Guest" });

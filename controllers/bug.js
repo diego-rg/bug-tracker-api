@@ -1,6 +1,5 @@
 const Bug = require("../models/bug");
 
-//Show all bugs
 const getAllBugs = async (req, res) => {
   try {
     const bugs = await Bug.find();
@@ -14,7 +13,6 @@ const getAllBugs = async (req, res) => {
   }
 };
 
-//Show one bug by ID
 const getBugById = async (req, res) => {
   const bugId = req.params.id;
   try {
@@ -29,7 +27,6 @@ const getBugById = async (req, res) => {
   }
 };
 
-//Create a bug
 const createBug = async (req, res) => {
   const bug = new Bug(req.body);
 
@@ -49,11 +46,9 @@ const createBug = async (req, res) => {
   }
 };
 
-//Update a bug
 const updateBug = async (req, res) => {
   const bugId = req.params.id;
   const newData = req.body;
-
   try {
     const bug = await Bug.findByIdAndUpdate(bugId, newData);
     if (!bug) {
@@ -76,10 +71,8 @@ const updateBug = async (req, res) => {
   }
 };
 
-//Delete a bug
 const deleteBug = async (req, res) => {
   const bugId = req.params.id;
-
   try {
     const bug = await Bug.findByIdAndDelete(bugId);
     if (!bug) {
