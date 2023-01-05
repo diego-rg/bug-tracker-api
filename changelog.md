@@ -1,5 +1,11 @@
 # Bug Tracker API: list of versions and changes
 
+## v0.2.0
+
+    1. Authorization and authentication with OAuth/OpenID providers (Google)
+    2. "Continue as guest" login option
+    3. Auth flow for SPA using JWT and Cookies (HTTPOnly and Secure) following REST requirements (stateless)
+
 ## v0.1.0
 
     1. Server, database connection and bug model
