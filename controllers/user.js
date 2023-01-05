@@ -15,10 +15,9 @@ const getCurrentUser = (req, res) => {
 const logoutUser = (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
-    sameSite: "strict",
+    sameSite: "none",
     secure: true,
   });
-
   res.redirect(spaUrl);
 };
 
@@ -35,7 +34,6 @@ const loginGuest = async (req, res) => {
         sameSite: "none",
         secure: true,
       });
-
       res.redirect(spaUrl);
     } else {
       res.status(500).send({ message: "Error. Log in as registered user or try again later." });

@@ -14,7 +14,6 @@ const googleCallback = (req, res) => {
       sameSite: "none",
       secure: true,
     });
-
     res.redirect(spaUrl);
   } else {
     res.status(500).send({ message: "Error. Try to log in with another provider." });

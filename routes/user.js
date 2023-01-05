@@ -5,7 +5,11 @@ const userController = require("../controllers/user");
 
 const router = express.Router();
 
-router.get("/current", passport.authenticate("jwt", { session: false }), userController.getCurrentUser);
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false, failureMessage: true }),
+  userController.getCurrentUser
+);
 
 router.get("/guest", userController.loginGuest);
 
