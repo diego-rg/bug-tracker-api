@@ -3,11 +3,8 @@ const passport = require("passport");
 
 const authController = require("../controllers/auth");
 const spaUrl = process.env.SPA_URL;
-const authUrl = process.env.GOOGLE_OAUTH_URL;
 
 const router = express.Router();
-const failureRedirect = authUrl;
-const successRedirect = spaUrl;
 
 // Google login
 router.get(
@@ -22,10 +19,20 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: failureRedirect,
+    failureRedirect: spaUrl,
     session: false,
   }),
   authController.googleCallback
+);
+
+// Github login
+router.get("/github", passport.authenticate("github", { session: false, scope: ["user"] }));
+
+// Github callback
+router.get(
+  "/github/callback",
+  passport.authenticate("github", { session: false, failureRedirect: spaUrl }),
+  authController.githubCallback
 );
 
 module.exports = router;

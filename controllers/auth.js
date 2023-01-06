@@ -20,4 +20,20 @@ const googleCallback = (req, res) => {
   }
 };
 
-module.exports = { googleCallback };
+const githubCallback = (req, res) => {
+  if (req.user) {
+    const token = jwt.sign({ id: req.user._id }, jwtSecret, {
+      expiresIn: jwtExpiration,
+    });
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
+    res.redirect(spaUrl);
+  } else {
+    res.status(500).send({ message: "Error. Try to log in with another provider." });
+  }
+};
+
+module.exports = { googleCallback, githubCallback };

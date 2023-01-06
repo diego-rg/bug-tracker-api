@@ -10,6 +10,7 @@ const bugRoutes = require("./routes/bug");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
 require("./auth/google");
+require("./auth/github");
 require("./auth/jwt");
 
 const PORT = process.env.PORT || 8000;
@@ -17,7 +18,6 @@ const dbUrl = process.env.DB_URL;
 const spaUrl = process.env.SPA_URL;
 
 const app = express();
-
 app.use(express.json());
 
 const corsConfig = {

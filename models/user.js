@@ -16,6 +16,10 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+    githubId: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );
